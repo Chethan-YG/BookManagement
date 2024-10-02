@@ -1,0 +1,81 @@
+/* Common styles */
+@charset "UTF-8";
+
+.navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.logo {
+    float: left;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Change font */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    float: right;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Arial', sans-serif; /* Change font */
+    font-size: 16px;
+}
+
+.nav-links li a:hover {
+    color: #ffd700;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 8px;
+}
+
+/* Styles for the book table */
+#bookTable {
+    width: calc(100% - 40px); /* Adjusted width with left and right margin */
+    margin: 0 auto; /* Center align */
+    border-collapse: collapse;
+    background-color: #f9f9f9; /* Matched background color */
+    margin-top:20px;
+}
+
+#bookTable th,
+#bookTable td {
+    padding: 10px;
+    border: 1px solid #ccc; /* Changed border color */
+    text-align: left;
+}
+
+#bookTable th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Alternate row colors for the book list */
+#bookList tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#bookList tr:hover {
+    background-color: #e2e2e2;
+}

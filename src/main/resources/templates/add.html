@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="add.css">
+    <title>Add Book</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+ <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">Library Management System</h1>
+            <ul class="nav-links">
+                <li><a href="/home">About</a></li>
+                <li><a href="/add">Add Book</a></li>
+                <li><a href="/get">Get Books</a></li>
+                <li><a href="/update">Update Book</a></li>
+                <li><a href="/delete">Delete Book</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    
+    <h2>Add Book</h2>
+    <form id="bookForm" method="post">
+        <label>Title:</label>
+        <input type="text" id="title"/>
+        <br/>
+        <label>Author Id:</label>
+        <input type="number" id="author_id"/>
+        <br/>
+        <label>Author First Name:</label>
+        <input type="text" id="authorFirstName"/>
+        <br/>
+        <label>Author Last Name:</label>
+        <input type="text" id="authorLastName"/>
+        <br/>
+        <label>Author Language:</label>
+        <input type="text" id="authorLanguage"/>
+        <br/>
+        <button type="button" onclick="submitForm()">Add Book</button>
+    </form>
+
+   <script>
+    function submitForm() {
+        // Get form data
+        var title = document.getElementById("title").value;
+        var author_id = parseInt(document.getElementById("author_id").value);
+        var authorFirstName = document.getElementById("authorFirstName").value;
+        var authorLastName = document.getElementById("authorLastName").value;
+        var authorLanguage = document.getElementById("authorLanguage").value;
+
+        // Create JSON object
+        var data = {
+            "title": title,
+            "author": {
+                "author_id": author_id,
+                "first_Name": authorFirstName,
+                "last_Name": authorLastName,
+                "language": authorLanguage
+            }
+        };
+
+        // Send fetch request
+        fetch("/books", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to add book');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Handle successful response
+            Swal.fire({
+                icon: 'success',
+                title: 'Book added successfully',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            document.getElementById("bookForm").reset();
+        })
+        .catch(error => {
+            // Handle error response
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text:'Failed to add book',
+                timer: 1500
+            });
+        });
+    }
+</script>
+
+</body>
+</html>

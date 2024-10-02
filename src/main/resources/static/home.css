@@ -1,0 +1,48 @@
+body
+{
+	margin:8px;
+}
+
+/* Navbar CSS */
+.navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.logo {
+    float: left;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Change font */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    float: right;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Arial', sans-serif; /* Change font */
+    font-size: 16px;
+}
+
+.nav-links li a:hover {
+    color: #ffd700;
+}

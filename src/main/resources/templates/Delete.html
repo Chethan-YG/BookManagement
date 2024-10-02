@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="Delete.css">
+<title>Delete Book</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container">
+        <h1 class="logo">Library Management System</h1>
+        <ul class="nav-links">
+            <li><a href="/home">About</a></li>
+            <li><a href="/add">Add Book</a></li>
+            <li><a href="/get">Get Books</a></li>
+            <li><a href="/update">Update Book</a></li>
+            <li><a href="/delete">Delete Book</a></li>
+        </ul>
+    </div>
+</nav>
+
+<h2>Delete Book</h2>
+
+<form id="deleteForm">
+    <label for="bookId">Enter Book ID:</label>
+    <input type="number" id="bookId" name="bookId" required>
+    <button type="submit">Delete</button>
+</form>
+
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("deleteForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var bookId = document.getElementById("bookId").value;
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Once deleted, you will not be able to recover this book!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch("/books/" + bookId, {
+                    method: 'DELETE',
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to delete book');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Book deleted successfully',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        document.getElementById("deleteForm").reset();
+                    });
+                })
+                .catch(error => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Failed to delete book',
+                        timer: 1500
+                    });
+                });
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>

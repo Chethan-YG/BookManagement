@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="get.css">
+<title>Book List</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar">
+        <div class="container">
+            <h1 class="logo">Library Management System</h1>
+            <ul class="nav-links">
+                <li><a href="/home">About</a></li>
+                <li><a href="/add">Add Book</a></li>
+                <li><a href="/get">Get Books</a></li>
+                <li><a href="/update">Update Book</a></li>
+                <li><a href="/delete">Delete Book</a></li>
+            </ul>
+        </div>
+    </nav>
+
+<table id="bookTable" border="1">
+    <thead>
+        <tr>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Author ID</th>
+            <th>Author First Name</th>
+            <th>Author Last Name</th>
+            <th>Author Language</th>
+        </tr>
+    </thead>
+    <tbody id="bookList">
+    </tbody>
+</table>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Make fetch request to fetch books data
+    fetch("/books")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch books');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Upon successful response, render the book list
+            renderBookList(data);
+        })
+        .catch(error => {
+            console.error("Error fetching books:", error);
+        });
+
+    // Function to render book list
+    function renderBookList(books) {
+        var html = "";
+        if (books.length > 0) {
+            // Iterate through each book and create table rows
+            books.forEach(function(book) {
+                html += "<tr>";
+                html += "<td>" + book.id + "</td>"; // Change to book_id
+                html += "<td>" + book.title + "</td>"; // Change to title
+                html += "<td>" + book.author.author_id + "</td>"; // Change to author_id
+                html += "<td>" + book.author.first_Name + "</td>"; // Change to first_Name
+                html += "<td>" + book.author.last_Name + "</td>"; // Change to last_Name
+                html += "<td>" + book.author.language + "</td>"; // Change to language
+                html += "</tr>";
+            });
+        } else {
+            html += "<tr><td colspan='6'>No books found.</td></tr>";
+        }
+        $("#bookList").html(html); // Set the HTML content of bookList tbody
+    }
+});
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+@charset "UTF-8";
+.navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.logo {
+    float: left;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    float: right;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Arial', sans-serif; /* Change font */
+    font-size: 16px;
+}
+
+.nav-links li a:hover {
+    color: #ffd700;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 8px;
+
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+/* Styles for the update book form */
+#updateBookForm {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #f9f9f9; /* Matched background color */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#updateBookForm label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#updateBookForm input[type="number"],
+#updateBookForm input[type="text"] {
+    width: calc(100% - 10px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#updateBookForm button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#updateBookForm button[type="submit"]:hover {
+    background-color: #554;
+}
